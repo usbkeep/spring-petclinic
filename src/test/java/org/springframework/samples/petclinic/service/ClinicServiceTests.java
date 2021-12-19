@@ -89,18 +89,18 @@ class ClinicServiceTests {
 	Pageable pageable;
 
 	@Test
-	void shouldFindOwnersByLastName() {
-		Page<Owner> owners = this.owners.findByLastName("Davis", pageable);
+	void shouldFindOwnersByFirstName() {
+		Page<Owner> owners = this.owners.findByFirstName("Betty", pageable); // Betty Davis
 		assertThat(owners).hasSize(2);
 
-		owners = this.owners.findByLastName("Daviss", pageable);
+		owners = this.owners.findByFirstName("Daviss", pageable); //
 		assertThat(owners).isEmpty();
 	}
 
 	@Test
 	void shouldFindSingleOwnerWithPet() {
 		Owner owner = this.owners.findById(1);
-		assertThat(owner.getLastName()).startsWith("Franklin");
+		assertThat(owner.getFirstName()).startsWith("George"); // George Franklin
 		assertThat(owner.getPets()).hasSize(1);
 		assertThat(owner.getPets().get(0).getType()).isNotNull();
 		assertThat(owner.getPets().get(0).getType().getName()).isEqualTo("cat");
@@ -109,7 +109,7 @@ class ClinicServiceTests {
 	@Test
 	@Transactional
 	void shouldInsertOwner() {
-		Page<Owner> owners = this.owners.findByLastName("Schultz", pageable);
+		Page<Owner> owners = this.owners.findByFirstName("Sam", pageable);
 		int found = (int) owners.getTotalElements();
 
 		Owner owner = new Owner();
@@ -121,7 +121,7 @@ class ClinicServiceTests {
 		this.owners.save(owner);
 		assertThat(owner.getId().longValue()).isNotEqualTo(0);
 
-		owners = this.owners.findByLastName("Schultz", pageable);
+		owners = this.owners.findByFirstName("Sam", pageable);
 		assertThat(owners.getTotalElements()).isEqualTo(found + 1);
 	}
 
@@ -129,22 +129,22 @@ class ClinicServiceTests {
 	@Transactional
 	void shouldUpdateOwner() {
 		Owner owner = this.owners.findById(1);
-		String oldLastName = owner.getLastName();
-		String newLastName = oldLastName + "X";
+		String oldFirstName = owner.getFirstName();
+		String newFirstName = oldFirstName + "X";
 
-		owner.setLastName(newLastName);
+		owner.setFirstName(newFirstName);
 		this.owners.save(owner);
 
 		// retrieving new name from database
 		owner = this.owners.findById(1);
-		assertThat(owner.getLastName()).isEqualTo(newLastName);
+		assertThat(owner.getFirstName()).isEqualTo(newFirstName);
 	}
 
 	@Test
 	void shouldFindPetWithCorrectId() {
 		Pet pet7 = this.pets.findById(7);
 		assertThat(pet7.getName()).startsWith("Samantha");
-		assertThat(pet7.getOwner().getFirstName()).isEqualTo("Jean");
+		assertThat(pet7.getOwner().getFirstName()).isEqualTo("Jean"); //
 
 	}
 
