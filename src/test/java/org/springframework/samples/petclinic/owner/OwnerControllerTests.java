@@ -138,7 +138,7 @@ class OwnerControllerTests {
 	}
 
 	@Test
-	void testProcessFindFormByLastName() throws Exception {
+	void testProcessFindFormByFirstName() throws Exception {
 		Page<Owner> tasks = new PageImpl<Owner>(Lists.newArrayList(george));
 		Mockito.when(this.owners.findByFirstName(eq("George"), any(Pageable.class))).thenReturn(tasks);
 		mockMvc.perform(get("/owners?page=1").param("firstName", "George")).andExpect(status().is3xxRedirection())
