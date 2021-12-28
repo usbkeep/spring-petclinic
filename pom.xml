@@ -315,7 +315,6 @@
           <plugin>
             <groupId>com.gitlab.haynes</groupId>
             <artifactId>libsass-maven-plugin</artifactId>
-            <version>0.2.26</version>
             <executions>
                <execution>
                   <phase>generate-resources</phase>

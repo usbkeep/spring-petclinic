@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class StoreTest {
 
 	@Test
-	public void testPay(){
+	public void testPay() {
 		Payment cashPerf = new CashPerf();
 		Store store = new Store(cashPerf);
 		store.buySomething(50000);
 
 	}
-}
 
+}

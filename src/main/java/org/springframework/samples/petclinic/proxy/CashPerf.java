@@ -2,7 +2,7 @@ package org.springframework.samples.petclinic.proxy;
 
 import org.springframework.util.StopWatch;
 
-public class CashPerf implements Payment{
+public class CashPerf implements Payment {
 
 	Payment cash = new Cash();
 
@@ -16,4 +16,5 @@ public class CashPerf implements Payment{
 		stopWatch.stop();
 		System.out.println(stopWatch.prettyPrint());
 	}
+
 }
