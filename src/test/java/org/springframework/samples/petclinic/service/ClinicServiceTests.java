@@ -90,10 +90,11 @@ class ClinicServiceTests {
 
 	@Test
 	void shouldFindOwnersByFirstName() {
-		Page<Owner> owners = this.owners.findByFirstName("Betty", pageable); // Betty Davis
+		// Jean Coleman, Jeff black
+		Page<Owner> owners = this.owners.findByFirstName("Je", pageable);
 		assertThat(owners).hasSize(2);
 
-		owners = this.owners.findByFirstName("Daviss", pageable); //
+		owners = this.owners.findByFirstName("Jes", pageable); //
 		assertThat(owners).isEmpty();
 	}
 
