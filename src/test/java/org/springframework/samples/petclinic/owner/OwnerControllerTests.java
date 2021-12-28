@@ -69,6 +69,9 @@ class OwnerControllerTests {
 	@MockBean
 	private VisitRepository visits;
 
+	@MockBean
+	private PetRepository pets;
+
 	private Owner george;
 
 	@BeforeEach
